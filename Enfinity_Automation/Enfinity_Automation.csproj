@@ -34,10 +34,15 @@
     <Folder Include="TestCases\ERP\" />
     <Folder Include="TestCases\HRMS\Payroll\" />
     <Folder Include="TestData\ERP\" />
-    <Folder Include="TestData\HRMS\HRCore\" />
     <Folder Include="TestData\HRMS\Payroll\" />
     <Folder Include="Utilities\DataProviders\ERP\" />
     <Folder Include="Utilities\DataProviders\HRMS\Payroll\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\HRMS\HRCore\designation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
