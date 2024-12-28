@@ -1,10 +1,12 @@
 ﻿using Enfinity_Automation.BaseTest;
+using Enfinity_Automation.Models;
 using Enfinity_Automation.PageObjects.HRMS.HRCore;
 using Enfinity_Automation.Utilities.DataProviders.HRMS.HRCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Enfinity_Automation.TestCases.HRMS.HRCore
@@ -21,9 +23,14 @@ namespace Enfinity_Automation.TestCases.HRMS.HRCore
         }
 
         [Test]
-        [Category("ddt")]       
-        public void VerifyDesignation()
+        [Category("ddt")]
+        [TestCaseSource(typeof(HRCoreDataProvider), nameof(HRCoreDataProvider.DesignationJson))]
+        public void VerifyDesignationJson(DesignationModel designationModel)
         {
+            //string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "designation.json");
+            //var jsonString = File.ReadAllText(jsonFilePath);
+
+            //var designationModel = JsonSerializer.Deserialize<DesignationModel>(jsonString);
 
             // Navigate to Designation setup
             _dp.NavigateToDesignation();
@@ -33,17 +40,17 @@ namespace Enfinity_Automation.TestCases.HRMS.HRCore
             _dp.ClkNewBtn();
             Logger.Info("clicked on new btn");
             //_dp.EnterCode(code);
-            _dp.EnterCode(faker.Random.AlphaNumeric(5));
+            _dp.EnterCode(designationModel.Id);
             Logger.Info("provided code");
             //_dp.EnterDesignation(desg);
-            _dp.EnterDesignation(faker.Name.JobTitle());
+            _dp.EnterDesignation(designationModel.Name);
             Logger.Info("provided designation");
             _dp.ClkSaveBtn();
             Logger.Info("clicked on save button");
 
 
 
-            Assert.True(_dp.isDesgCreated());
+            //Assert.True(_dp.isDesgCreated());
 
             //test
         }

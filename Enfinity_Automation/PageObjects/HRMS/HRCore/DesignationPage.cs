@@ -59,15 +59,15 @@ namespace Enfinity_Automation.PageObjects.HRMS.HRCore
         public void EnterCode(string code)
         {
             //faker = new Faker();
-            //CodeField.SendKeys(code);
-            CodeField.SendKeys(BaseClass.faker.Random.AlphaNumeric(5));
+            CodeField.SendKeys(code);
+            //CodeField.SendKeys(BaseClass.faker.Random.AlphaNumeric(5));
         }
 
         
         public void EnterDesignation(string desg)
         {
-            //NameField.SendKeys(desg);            
-            NameField.SendKeys(designation);
+            NameField.SendKeys(desg);            
+            //NameField.SendKeys(designation);
         }
 
         public void ClkSaveBtn()
