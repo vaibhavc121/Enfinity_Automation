@@ -12,12 +12,12 @@ namespace Enfinity_Automation.BaseTest
     public class BaseClass
     {
         public static IWebDriver Driver { get; private set; }
-        public static Faker faker;
+        //public static Faker faker;
 
         [SetUp]
         public void Setup()
         {
-            faker = new Faker();
+            //faker = new Faker();
             // Initialize WebDriver
             Driver = new ChromeDriver();
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);

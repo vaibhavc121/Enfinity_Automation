@@ -20,7 +20,7 @@ namespace Enfinity_Automation.TestCases.HRMS.HRCore
             _dp = new DesignationPage(Driver);
         }
 
-        [Test]
+        [Test, Category("smoke")]
         //[TestCaseSource(typeof(HRCoreDataProvider), nameof(HRCoreDataProvider.Designation))]
         //[TestCaseSource(typeof(Excel_HRCoreDataProvider), nameof(Excel_HRCoreDataProvider.Designation))]
         //public void VerifyDesignation(string code, string desg)
@@ -35,10 +35,11 @@ namespace Enfinity_Automation.TestCases.HRMS.HRCore
             _dp.ClkNewBtn();
             Logger.Info("clicked on new btn");
             //_dp.EnterCode(code);
-            _dp.EnterCode(faker.Random.AlphaNumeric(5));
+            //_dp.EnterCode(faker.Random.AlphaNumeric(5));
+            _dp.EnterCode("a123");
             Logger.Info("provided code");
             //_dp.EnterDesignation(desg);
-            _dp.EnterDesignation(faker.Name.JobTitle());
+            _dp.EnterDesignation("gamer");
             Logger.Info("provided designation");
             _dp.ClkSaveBtn();
             Logger.Info("clicked on save button");
