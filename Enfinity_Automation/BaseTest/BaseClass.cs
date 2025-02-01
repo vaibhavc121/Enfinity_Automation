@@ -6,22 +6,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bogus;
+using RealTimeProject.Reporting;
 
 namespace Enfinity_Automation.BaseTest
 {
     public class BaseClass
     {
         public static IWebDriver Driver { get; private set; }
-        //public static Faker faker;
+        public static Faker faker;
+        private static string reportPath = $"{TestContext.CurrentContext.WorkDirectory}\\ExtentReport.html"; //for extent report
 
         [SetUp]
         public void Setup()
         {
-            //faker = new Faker();
+            
+
+            faker = new Faker();
             // Initialize WebDriver
-            Driver = new ChromeDriver();
+            Driver = new ChromeDriver();            
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             Driver.Manage().Window.Maximize();
+
+            ExtentReportsUtility2.InitializeReport(reportPath);
+            ExtentReportsUtility2.SetDriver(Driver); // Set driver for screenshot capture
+            ExtentReportsUtility2.CreateTest(TestContext.CurrentContext.Test.Name);
 
             // Navigate to the desired URL
             Driver.Navigate().GoToUrl("https://testhrms.onenfinity.com/HrCore/Home/GettingStarted");
@@ -54,8 +62,10 @@ namespace Enfinity_Automation.BaseTest
         {
             if (Driver != null)
             {
+                ExtentReportsUtility2.LogTestResult();
                 Driver.Quit();
                 Driver.Dispose();
+                ExtentReportsUtility2.FlushReport();
             }
         }
     }

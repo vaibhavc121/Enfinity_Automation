@@ -13,7 +13,7 @@ namespace Enfinity_Automation.PageObjects.HRMS.HRCore
     public class Json_DesignationPage
     {
         private readonly IWebDriver _driver;
-       // public Faker faker;
+        public Faker faker;
 
         // Constructor
         public Json_DesignationPage(IWebDriver driver)
@@ -32,7 +32,7 @@ namespace Enfinity_Automation.PageObjects.HRMS.HRCore
         private IWebElement result => _driver.FindElement(By.XPath("/html[1]/body[1]/div[6]/div[2]/div[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[1]/div[1]/table[1]/tbody[1]/tr[1]/td[2]/span[1]/a[1]"));
 
 
-       // string designation = BaseClass.faker.Name.JobTitle();
+        string designation = BaseClass.faker.Name.JobTitle();
         // Methods
         public void NavigateToDesignation()
         {
@@ -60,16 +60,14 @@ namespace Enfinity_Automation.PageObjects.HRMS.HRCore
         {
             //faker = new Faker();
             //CodeField.SendKeys(code);
-            //CodeField.SendKeys(BaseClass.faker.Random.AlphaNumeric(5));
-            CodeField.SendKeys("a11");
+            CodeField.SendKeys(BaseClass.faker.Random.AlphaNumeric(5));
         }
 
 
         public void EnterDesignation(string desg)
         {
             //NameField.SendKeys(desg);            
-            //NameField.SendKeys(designation);
-            NameField.SendKeys("gamer1");
+            NameField.SendKeys(designation);
         }
 
         public void ClkSaveBtn()
@@ -81,7 +79,7 @@ namespace Enfinity_Automation.PageObjects.HRMS.HRCore
         public bool isDesgCreated()
         {
             BaseClass.Driver.Navigate().Back();
-            filterCell.SendKeys("gamer1");
+            filterCell.SendKeys(designation);
             Thread.Sleep(2000);
             string actdesg = result.Text;
 

@@ -35,11 +35,10 @@ namespace Enfinity_Automation.TestCases.HRMS.HRCore
             _dp.ClkNewBtn();
             Logger.Info("clicked on new btn");
             //_dp.EnterCode(code);
-            //_dp.EnterCode(faker.Random.AlphaNumeric(5));
-            _dp.EnterCode("a123");
+            _dp.EnterCode(faker.Random.AlphaNumeric(5));
             Logger.Info("provided code");
             //_dp.EnterDesignation(desg);
-            _dp.EnterDesignation("gamer");
+            _dp.EnterDesignation(faker.Name.JobTitle());
             Logger.Info("provided designation");
             _dp.ClkSaveBtn();
             Logger.Info("clicked on save button");
